@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gizzy</title>
+    <link rel="stylesheet" href="/public/style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <meta name="color-scheme" content="dark light">
+</head>
+<body>
+<div class="body-container">
+<nav style="display: block;" class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <span style="font-family: 'Honk', system-ui; font-size: 1.3em;">Gizzy</span>
+            </a>
+        </div>
+        <div class="d-flex align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="?p=home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?p=projects">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?p=socials">Socials</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section id="home" class="slide">
+    <div class="container">
+    <h1 id="typedName"></h1>
+    <p id="typedDev"></p>
+    <p id="aboutMe">I'm into web development, especially the backend, and I'm comfortable with JavaScript. I like experimenting with Node.js to create random projects, and I also know a bit of Python. I also use linux as my daily driver os I use Arch Linux BTW. <img src="/public/archlinux.png" style="height: 35px; width: 35px;" /></p>
+    </div>
+</section>
+<section id="projects" class="slide">
+    <div class="offers">
+        <h2>Coming Soon</h2>
+        <small>Project Template</small>
+        <p>Detail 1</p>
+        <button>Button</button>
+    </div>
+</section>
+<section id="socials" class="slide">
+    <div class="offers">
+        <h2><i class="fa-brands fa-github"></i></h2>
+        <p>Github</p>
+        <button onclick="window.location.href='https://github.com/GizzyUwU'">Open</button>
+    </div>
+    <div class="offers">
+        <h2><i class="fa-brands fa-free-code-camp"></i></h2>
+        <p>FreeCodeCamp</p>
+        <button onclick="window.location.href='https://www.freecodecamp.org/Gizzy'">Open</button>
+    </div>
+    <div class="offers">
+        <h2><i class="fa-brands fa-docker"></i></h2>
+        <p>Docker</p>
+        <button onclick="window.location.href='https://hub.docker.com/u/gizzyuwu'">Open</button>
+    </div>
+    <div class="offers">
+        <h2><i class="fa-brands fa-twitter"></i></h2>
+        <p>Twitter</p>
+        <button onclick="window.location.href='https://twitter.com/GizzyUwU'">Open</button>
+    </div>
+    <div class="offers">
+        <img style="height: 59px; width: 59px;" src="/public/bluesky.png">
+        <p>BlueSky</p>
+        <button onclick="window.location.href='https://bsky.app/profile/gizzy.furgiz.eu.org'">Open</button>
+    </div>
+    <div class="offers">
+        <h2><i class="fa-solid fa-envelope"></i></h2>
+        <p>Email</p>
+        <button onclick="window.location.href='mailto:contact@gizzy.is-a.dev'">Open</button>
+    </div>
+</section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const options = {
+        strings: ['Hey, I\'m Gizzy'],
+        typeSpeed: 50,
+        showCursor: false,
+        onComplete: function() {
+            typedDev()
+        }
+    };
+    const typed = new Typed('#typedName', options);
+})
+
+/* $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramId = urlParams.get('p');
+
+            if (paramId) {
+                $('#' + paramId).addClass('active').siblings('.slide').removeClass('active');
+            } else {
+                $('#home').addClass('active').siblings('.slide').removeClass('active');
+            }
+
+            $(window).on('hashchange', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const paramId = urlParams.get('p');
+
+                if (paramId) {
+                    $('#' + paramId).addClass('active').siblings('.slide').removeClass('active');
+                } else {
+                    $('#home').addClass('active').siblings('.slide').removeClass('active');
+                }
+            });
+        }); */
+
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramId = urlParams.get('p');
+    if (paramId && $('#' + paramId).length) {
+        $('#' + paramId).addClass('active');
+    } else {
+        $('#home').addClass('active');
+    }
+
+    $('a.nav-link').on('click', function(event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        const hash = $(this).attr('href').split('=')[1];
+        if ($('#' + hash).length) {
+            $('.slide').removeClass('active');
+            $('#' + hash).addClass('active');
+            window.history.pushState(null, null, '?p=' + hash); // Update URL without reloading the page
+        } else return;
+    });
+});
+
+function typedDev() {
+    const options = {
+        strings: ['A Full-Stack Developer'],
+        typeSpeed: 50,
+        showCursor: false,
+        onComplete: function() {
+            showElements()
+        }
+    };
+    const typed = new Typed('#typedDev', options);
+}
+
+function showElements() {
+    document.getElementById('aboutMe').style.display = "block"
+}
+</script>
+</body>
+</html>

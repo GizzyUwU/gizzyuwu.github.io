@@ -1,0 +1,227 @@
+:root {
+    color-scheme: light dark; /* both supported */
+    --main-color: #2d2c91;
+}
+
+/* Dark mode */
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --main-color: #ffffff; /* White color for dark mode */
+        --bg-color: #1b1b5c;
+        --nav-color: #21216b;
+        --box-color: #23235f;
+    }
+}
+nav {
+    background: var(--nav-color);
+}
+.navbar.navbar-expand-lg .navbar-nav .nav-link {
+    color: var(--main-color);
+}
+.body-container {
+    background: var(--bg-color);
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#home {
+    justify-content: center; /* Center horizontally */
+    margin-top: 4%;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    color: var(--main-color);
+}
+
+#home .container {
+    display: flex;
+    flex-direction: column; /* Set the direction to column */
+}
+
+#aboutMe {
+    display: none;
+    opacity: 0;
+    animation: appear 1s ease-in-out forwards;
+}
+  
+@keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+section {
+    display: none;
+}
+
+.slide {
+    display: none;
+}
+.slide.active {
+    display: flex;
+    animation: slideIn 0.6s ease-in-out forwards;
+}
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#projects {
+    justify-content: center;
+    margin-top: 4%;
+    height: 100vh;
+    color: var(--main-color);
+}
+
+#socials {
+    justify-content: center;
+    margin-top: 4%;
+    height: 100vh;
+    color: var(--main-color);
+}
+
+#projects .title {
+    text-align: center;
+    margin: 10px auto 50px auto;
+    z-index: 1;
+    margin-top: 100px;
+}
+
+#projects h2 {
+     margin-top: 20px;
+}
+
+#projects h3 {
+    margin-top: 40px;
+}
+
+#projects p {
+    margin: 20px 30px;
+    font-size: 16px;
+}
+
+#projects small {
+    font-size: 12px;
+    color: gray;
+}
+
+#projects .small-colored {
+    color: #47cf73;
+}
+
+
+#projects .offers {
+    position: relative;
+    text-align: center;
+    background: var(--box-color);
+    padding: 1%;
+    margin: 10px;
+    width: 300px;
+    height: 350px;
+    top: 0;
+    border: 1px solid #eaeaea;
+    z-index: 1;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; 
+}
+
+#projects .offers:hover {
+    position: relative;
+    top: -20px;
+    box-shadow: 0px 14px 6px 0px #0000004d;
+}
+
+#socials .offers {
+    position: relative;
+    text-align: center;
+    background: var(--box-color);
+    padding: 1%;
+    margin: 10px;
+    width: 220px;
+    height: 210px;
+    top: 0;
+    border: 1px solid #eaeaea;
+    z-index: 1;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out; 
+}
+
+#socials .offers:hover {
+    position: relative;
+    top: -20px;
+    box-shadow: 0px 14px 6px 0px #0000004d;
+}
+
+#socials .offers:nth-child(2) h3{
+    margin-top: 20px;
+}
+
+#socials .offers:nth-child(2):hover {
+    box-shadow: 0px 14px 6px 0px #0000004d;
+}
+
+#projects button {
+    font-size: 22px;
+    font-weight: 500;
+    background: #0ebeff;
+    color: #fff;
+    margin: 30px auto 20px auto;
+    padding: 2% 6%;
+    border: 0;
+    transition-duration: 0.5s;
+}
+
+#projects button:hover {
+     background: #47cf73;
+}
+
+#socials button {
+    font-size: 22px;
+    font-weight: 500;
+    background: #0ebeff;
+    color: #fff;
+    padding: 2% 6%;
+    border: 0;
+    transition-duration: 0.5s;
+}
+
+#socials button:hover {
+     background: #47cf73;
+}
+
+#socials .title {
+    text-align: center;
+    margin: 10px auto 50px auto;
+    z-index: 1;
+    margin-top: 100px;
+}
+
+#socials h2 {
+     margin-top: 20px;
+}
+
+#socialss h3 {
+    margin-top: 40px;
+}
+
+#socials p {
+    margin: 20px 30px;
+    font-size: 16px;
+}
+
+#socials small {
+    font-size: 12px;
+    color: gray;
+}
+
+#socials .small-colored {
+    color: #47cf73;
+}
