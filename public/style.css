@@ -1,42 +1,40 @@
 :root {
-    color-scheme: light dark; /* both supported */
+    color-scheme: light dark; 
     --main-color: #2d2c91;
 }
 
-/* Dark mode */
 @media screen and (prefers-color-scheme: dark) {
     :root {
-        --main-color: #ffffff; /* White color for dark mode */
+        --main-color: #ffffff;
         --bg-color: #1b1b5c;
         --nav-color: #21216b;
         --box-color: #23235f;
     }
 }
-nav {
-    background: var(--nav-color);
-}
-.navbar.navbar-expand-lg .navbar-nav .nav-link {
-    color: var(--main-color);
-}
-.body-container {
-    background: var(--bg-color);
-}
+
 html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
-#home {
-    justify-content: center; /* Center horizontally */
-    margin-top: 4%;
-    height: 100vh; /* Set the height to 100% of the viewport height */
+nav {
+    background: var(--nav-color);
+}
+
+.navbar.navbar-expand-lg .navbar-nav .nav-link {
     color: var(--main-color);
 }
 
-#home .container {
-    display: flex;
-    flex-direction: column; /* Set the direction to column */
+.body-container {
+    background: var(--bg-color);
+}
+
+#home {
+    justify-content: center;
+    margin-top: 4%;
+    height: 100vh;
+    color: var(--main-color);
 }
 
 #aboutMe {
