@@ -36,18 +36,18 @@
     <div class="body-container">
         <nav style="display: block;" class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                <button onclick="hamburber()" data-mdb-collapse-init class="navbar-toggler" type="button"
                     data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <a class="navbar-brand mt-2 mt-lg-0" href="?p=home">
+                    <a class="navbar-brand mt-2 mt-lg-0" href="/">
                         <span style="font-family: 'Honk', system-ui; font-size: 1.3em;">Gizzy</span>
                     </a>
                 </div>
                 <div class="d-flex align-items-center">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-links">
                         <li class="nav-item">
                             <a class="nav-link" href="?p=home">Home</a>
                         </li>
@@ -113,6 +113,14 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+                    function hamburber() {
+  var x = document.getElementById("nav-links");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
         document.addEventListener('DOMContentLoaded', async function () {
             const options = {
                 strings: ['Hey, I\'m Gizzy'],

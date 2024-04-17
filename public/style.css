@@ -12,6 +12,11 @@
     }
 }
 
+@media screen and (max-width: 991px) {
+    #nav-links {
+      display: none;
+    }
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -135,6 +140,13 @@ section {
     box-shadow: 0px 14px 6px 0px #0000004d;
 }
 
+#socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
 #socials .offers {
     position: relative;
     text-align: center;
@@ -164,6 +176,12 @@ section {
 
 #socials .offers:nth-child(2):hover {
     box-shadow: 0px 14px 6px 0px #0000004d;
+}
+
+@media screen and (max-width: 600px) {
+    #socials .offers {
+        width: 100%; /* Adjust the width for smaller screens */
+    }
 }
 
 #projects button {
