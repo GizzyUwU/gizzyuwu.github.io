@@ -61,8 +61,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (raw.data.imageType === 'img') {
                 const img = document.createElement('img');
                 img.src = raw.data.imageUrl;
-                img.style.height = '64px';
-                img.style.width = '64px';
+                if(raw.data.imageStyle) {
+                    for (let prop in raw.data.imageStyle) {
+                        img.style[prop] = raw.data.imageStyle[prop];
+                    }
+                } else {
+                    img.style.height = '60px';
+                    img.style.width = '64px';
+                }
                 h2.appendChild(img);
                 offerDiv.appendChild(h2);
             } else if (raw.data.imageType === 'icon') {
