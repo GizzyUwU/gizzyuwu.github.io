@@ -1,0 +1,6 @@
+{
+    "name": "Email",
+    "imageType": "icon",
+    "iconClasses": ["fa-solid", "fa-envelope"],
+    "url": "mailto:contact@gizzy.is-a.dev"
+}

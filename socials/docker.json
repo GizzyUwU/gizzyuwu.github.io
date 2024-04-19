@@ -1,0 +1,6 @@
+{
+    "name": "Docker",
+    "imageType": "icon",
+    "iconClasses": ["fa-brands", "fa-docker"],
+    "url": "https://hub.docker.com/u/gizzyuwu"
+}
