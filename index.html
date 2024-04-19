@@ -32,6 +32,7 @@
     <meta name="twitter:description" content="Gizzy's Portfolio! :3">
     <meta name="twitter:image" content="/favicon/android-chrome-512x512.png">
 </head>
+
 <body>
     <div class="body-container">
         <nav style="display: block;" class="navbar navbar-expand-lg">
@@ -65,10 +66,25 @@
             <div class="container">
                 <h1 id="typedName"></h1>
                 <p id="typedDev"></p>
-                <p id="aboutMe">I'm into web development, especially the backend, and I'm comfortable with JavaScript. I
-                    like experimenting with Node.js to create random projects, and I also know a bit of Python. I am
-                    also from the UK (I'm bri'ish) and use linux as my daily driver os I use Arch Linux BTW. <img
-                        src="./public/archlinux.png" style="height: 35px; width: 35px;" /></p>
+                <p id="aboutMe">I'm mainly a backend developer mostly using JavaScript as my main language but I also do
+                    a lot of Web Development in my free-time. I mostly make random silly projects :3 but I'm currently a
+                    Developer that works on the server backend for a small game called Protoshock what's found on steam.
+                    One fun fact about me is that have a disabilty called Dyspraxia and at the moment I am using <img
+                        src="https://img.shields.io/badge/Linux%20Mint-87CF3E?style=for-the-badge&logo=Linux%20Mint&logoColor=white" />
+                    as my daily driver os right now but most of the time I tend to use Arch Linux as my main os so I can
+                    say "I use <img
+                        src="https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=for-the-badge" />
+                    BTW!" and as most people tend to not know my age I am a 14 year old.
+                    <br />
+                    <img
+                        src="https://camo.githubusercontent.com/e5e88aa1d4493cf1bb101f7ca73547b2ef1d466f929df60973213219d8664f6d/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e6f64652e6a732532302d2532333433383533442e7376673f267374796c653d666f722d7468652d6261646765266c6f676f3d6e6f64652e6a73266c6f676f436f6c6f723d7768697465" />
+                    <img
+                        src="https://camo.githubusercontent.com/513e03fc97acb466e27d445394532ade8d90363a266a4e8ff9526e2c49db0f67/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f56697375616c5f53747564696f5f436f64652d3030373844343f7374796c653d666f722d7468652d6261646765266c6f676f3d76697375616c25323073747564696f253230636f6465266c6f676f436f6c6f723d7768697465" />
+                    <img
+                        src="https://camo.githubusercontent.com/84372c7d2f1a7308844360ecad82d49b3f6cbc068a0c5e31aeea6ca5344b77ba/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4a6176615363726970742d4637444631453f7374796c653d666f722d7468652d6261646765266c6f676f3d6a617661736372697074266c6f676f436f6c6f723d626c61636b" />
+                    <img
+                        src="https://img.shields.io/badge/Freecodecamp-%23123.svg?&style=for-the-badge&logo=freecodecamp&logoColor=green" />
+                </p>
             </div>
         </section>
         <section id="projects" class="slide"></section>
@@ -107,105 +123,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-    function hamburber() {
-        var x = document.getElementById("nav-links");
-        if (x.style.display === "block") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "block";
-        }
-    }
-        document.addEventListener('DOMContentLoaded', async function () {
-            const options = {
-                strings: ['Hey, I\'m Gizzy'],
-                typeSpeed: 50,
-                showCursor: false,
-                onComplete: function () {
-                    typedDev()
-                }
-            };
-            const typed = new Typed('#typedName', options);
-            async function fetchRepositoryContents(owner, repo) {
-                try {
-                    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/contents/projects?ref=main`);
-                    const files = response.data.filter(item => item.type === 'file' || item.type === 'dir');
-                    files.forEach(async file => {
-                        const url = file.download_url;
-                        let raw = await axios.get(url)
-                        try {
-                            const projectsContainer = document.getElementById('projects');
-                            const offerDiv = document.createElement('div');
-                            offerDiv.classList.add('offers');
-                            const h2 = document.createElement('h2');
-                            const img = document.createElement('img');
-                            img.src = raw.data.imageUrl;
-                            img.style.height = '64px';
-                            img.style.width = '64px';
-                            h2.appendChild(img);
-                            offerDiv.appendChild(h2);
-                            const p = document.createElement('p');
-                            p.textContent = raw.data.name;
-                            offerDiv.appendChild(p);
-                            if (raw.data.url) {
-                                const button = document.createElement('button');
-                                button.textContent = 'Open';
-                                button.onclick = () => window.location.href = raw.data.url;
-                                offerDiv.appendChild(button);
-                            }
-                            projectsContainer.appendChild(offerDiv);
-                        } catch (error) {
-                            console.error('Error fetching or displaying project:', error);
-                        }
-                    });
-                } catch (error) {
-                    console.error('Error fetching repository contents:', error.response.data);
-                }
-            }
-            fetchRepositoryContents('GizzyUwU', 'gizzyuwu.github.io');
-        })
-
-        $(document).ready(function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const paramId = urlParams.get('p');
-            if (paramId && $('#' + paramId).length) {
-                $('#' + paramId).addClass('active');
-            } else {
-                $('#home').addClass('active');
-            }
-
-            $('a.nav-link').on('click', function (event) {
-                event.preventDefault(); // Prevent default anchor behavior
-                const hash = $(this).attr('href').split('=')[1];
-                if ($('#' + hash).length) {
-                    $('.slide').removeClass('active');
-                    $('#' + hash).addClass('active');
-                    window.history.pushState(null, null, '?p=' + hash); // Update URL without reloading the page
-                } else return;
-            });
-        });
-
-        function typedDev() {
-            const options = {
-                strings: ['A Full-Stack Developer'],
-                typeSpeed: 50,
-                showCursor: false,
-                onComplete: function () {
-                    showElements()
-                }
-            };
-            const typed = new Typed('#typedDev', options);
-        }
-
-        function showElements() {
-            document.getElementById('aboutMe').style.display = "block"
-        }
-    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/public/js/index.js"></script>
 </body>
-
 </html>
