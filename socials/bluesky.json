@@ -3,8 +3,8 @@
     "imageType": "img",
     "imageUrl": "/public/img/bluesky.png",
     "imageStyle": {
-        "height": "59px",
-        "width": "59px"
+        "height": "50px",
+        "width": "50px"
     },
     "url": "https://bsky.app/profile/gizzy.furgiz.eu.org"
 }
