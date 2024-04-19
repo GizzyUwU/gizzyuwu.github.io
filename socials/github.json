@@ -1,6 +1,6 @@
 {
     "name": "Github",
     "imageType": "icon",
-    "iconClasses": "fa-brands fa-github",
+    "iconClasses": ["fa-brands", "fa-github"],
     "url": "https://github.com/GizzyUwU"
 }

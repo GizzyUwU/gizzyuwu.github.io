@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     };
     const typed = new Typed('#typedName', options);
-    
+
     const projects = await axios.get(`https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/contents/projects?ref=main`);
     const projectFiles = projects.data.filter(item => item.type === 'file' || item.type === 'dir');
     projectFiles.forEach(async file => {
@@ -58,17 +58,23 @@ document.addEventListener('DOMContentLoaded', async function () {
             const offerDiv = document.createElement('div');
             offerDiv.classList.add('offers');
             const h2 = document.createElement('h2');
-            if(raw.data.imageType === 'img') {
-            const img = document.createElement('img');
-            img.src = raw.data.imageUrl;
-            img.style.height = '64px';
-            img.style.width = '64px';
-            h2.appendChild(img);
-            offerDiv.appendChild(h2);
-            } else if(raw.data.imageType === 'icon') {
-                const icon = document.createElement('i');
-                icon.class = raw.data.iconClasses;
+            if (raw.data.imageType === 'img') {
+                const img = document.createElement('img');
+                img.src = raw.data.imageUrl;
+                img.style.height = '64px';
+                img.style.width = '64px';
                 h2.appendChild(img);
+                offerDiv.appendChild(h2);
+            } else if (raw.data.imageType === 'icon') {
+                const icon = document.createElement('i');
+                if (Array.isArray(raw.data.iconClasses)) {
+                    raw.data.iconClasses.forEach(className => {
+                        icon.classList.add(className);
+                    });
+                } else {
+                    icon.classList.add(raw.data.iconClasses);
+                }
+                h2.appendChild(icon);
                 offerDiv.appendChild(h2);
             }
             const p = document.createElement('p');
