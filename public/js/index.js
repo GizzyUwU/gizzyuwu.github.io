@@ -341,17 +341,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function fetchProjects() {
   try {
-    const response = await fetch('https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Projects');
-    const issues = await response.json();
+    const currentDomain = window.location.hostname;
+    const githubUrl = 'https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Projects';
+    const gitGayUrl = 'https://git.gay/api/v1/repos/GizzyUwU/pages/issues?state=all&labels=Projects';
+
+    let issues = [];
+    let apiUrl = githubUrl;
+    let fallbackUrl = gitGayUrl;
+
+    if (currentDomain.includes('gizzy.pages.gay')) {
+      apiUrl = gitGayUrl;
+      fallbackUrl = githubUrl;
+    }
+
+    try {
+      const response = await fetch(apiUrl);
+      issues = await response.json();
+    } catch (error) {
+      console.warn(`Failed to fetch from ${apiUrl}, trying fallback URL...`);
+      
+      try {
+        const response = await fetch(fallbackUrl);
+        issues = await response.json();
+      } catch (error) {
+        console.error('Error fetching issues from both APIs:', error);
+        document.getElementById('projectsList').innerHTML = '<li class="project-item"><div class="project-box">Error fetching issues.</div></li>';
+        return;
+      }
+    }
+
     let projectsList = document.getElementById('projectsList');
+
     if (issues.length > 0) {
       projectsList.innerHTML = '';
       issues.forEach(issue => {
         const issueElement = document.createElement('li');
         issueElement.classList.add('project-item');
 
-        const cleanedBody = issue.body.replace(/!\[.*?\]\(.*?\)/g, '');
-        const imageMatch = issue.body.match(/!\[.*?\]\((.*?)\)/);
+        const cleanedBody = issue.body ? issue.body.replace(/!\[.*?\]\(.*?\)/g, '') : '';
+        const imageMatch = issue.body ? issue.body.match(/!\[.*?\]\((.*?)\)/) : null;
         const imageUrl = imageMatch ? imageMatch[1] : '';
 
         const urlPattern = /URL="([^"]+)"/;
@@ -400,29 +428,58 @@ async function fetchProjects() {
 
 async function fetchContacts() {
   try {
-    const response = await fetch('https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Contact');
-    const issues = await response.json();
+    const currentDomain = window.location.hostname;
+    const githubUrl = 'https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Contact';
+    const gitGayUrl = 'https://git.gay/api/v1/repos/GizzyUwU/pages/issues?state=all&labels=Contact';
+
+    let issues = [];
+    let apiUrl = githubUrl;
+    let fallbackUrl = gitGayUrl;
+    
+    if (currentDomain.includes('gizzy.pages.gay')) {
+      apiUrl = gitGayUrl;
+      fallbackUrl = githubUrl;
+    }
+
+    try {
+      const response = await fetch(apiUrl);
+      issues = await response.json();
+    } catch (error) {
+      console.warn(`Failed to fetch from ${apiUrl}, trying fallback URL...`);
+      
+      try {
+        const response = await fetch(fallbackUrl);
+        issues = await response.json();
+      } catch (error) {
+        console.error('Error fetching contact info from both APIs:', error);
+        document.getElementById('contact-info').innerHTML = 'Error loading contact information.';
+        return;
+      }
+    }
+
+    let contactInfoElement = document.getElementById('contact-info');
+
     if (issues.length > 0) {
-      let contactElement = document.getElementById('contact-info');
-      contactElement.innerHTML = '';
+      contactInfoElement.innerHTML = '';
       issues.forEach(issue => {
-        const cleanedBody = issue.body.replace(/!\[.*?\]\(.*?\)/g, '');
+        const cleanedBody = issue.body ? issue.body.replace(/!\[.*?\]\(.*?\)/g, '') : '';
         const urlPattern = /URL="([^"]+)"/;
         const urlMatch = urlPattern.exec(cleanedBody);
         const url = urlMatch ? urlMatch[1] : null;
         let bodyContent = cleanedBody.replace(urlPattern, '').trim();
-
+        
+        let title = issue.title || 'No title';
         let contactContent = '';
         if (url) {
-          contactContent = `<a href="${url}">${issue.title}</a> - ${bodyContent}`;
+          contactContent = `<a href="${url}">${title}</a> - ${bodyContent}`;
         } else {
-          contactContent = `${issue.title} - ${bodyContent}`;
+          contactContent = `${title} - ${bodyContent}`;
         }
 
-        contactElement.innerHTML += `<span>${contactContent}</span><br>`;
+        contactInfoElement.innerHTML += `<span>${contactContent}</span><br>`;
       });
     } else {
-      contactElement.innerHTML = 'No contact information found.';
+      contactInfoElement.innerHTML = 'No contact information found.';
     }
   } catch (error) {
     console.error('Error fetching contact info:', error);
