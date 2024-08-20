@@ -349,7 +349,7 @@ async function fetchProjects() {
     let apiUrl = githubUrl;
     let fallbackUrl = gitGayUrl;
 
-    if (currentDomain.includes('gizzy.pages.gay')) {
+    if (currentDomain.includes('gizzyuwu.pages.gay')) {
       apiUrl = gitGayUrl;
       fallbackUrl = githubUrl;
     }
@@ -436,7 +436,7 @@ async function fetchContacts() {
     let apiUrl = githubUrl;
     let fallbackUrl = gitGayUrl;
     
-    if (currentDomain.includes('gizzy.pages.gay')) {
+    if (currentDomain.includes('gizzyuwu.pages.gay')) {
       apiUrl = gitGayUrl;
       fallbackUrl = githubUrl;
     }
