@@ -3,9 +3,9 @@
 }
 
 html, body {
+    background-color: #0c0c0c;
     height: 100%;
     width: 100%;
-    overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -27,7 +27,6 @@ li {
 }
 
 .terminal-container {
-    background-color: #0c0c0c;
     width: 100%;
     height: 100%;
     color: orange;
@@ -36,7 +35,6 @@ li {
 }
 
 .terminal-site-container {
-    background-color: #0c0c0c;
     width: 100%;
     height: 100%;
     color: orange;
@@ -61,6 +59,10 @@ li {
     display: inline;
 }
 
+a {
+    color: #0f0;
+}
+
 .terminal-site-title .typed-cursor {
     font-size: 2em;
     vertical-align: baseline;
@@ -83,11 +85,148 @@ li {
 }
 
 .content-section {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+}
+.loading {
     display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    color: #0f0;
+    background-color: #0c0c0c;
+    position: relative;
+}
+
+.loading-box {
+    width: 200px;
+    height: 100px;
+    border: 2px solid #0f0;
+    color: #0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+}
+
+@keyframes dots {
+    0% { content: "Loading"; }
+    33% { content: "Loading."; }
+    66% { content: "Loading.."; }
+    100% { content: "Loading..."; }
+}
+
+.loading-box::after {
+    content: "Loading";
+    animation: dots 1s steps(1) infinite;
 }
 
 @keyframes blink {
     50% {
         opacity: 0;
     }
+}
+
+#projects {
+    display: flex;
+    z-index: 1;
+    margin-left: auto;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+}
+
+.projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    border: 2px solid limegreen;
+    background-color: black;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    color: white;
+    text-align: left;
+    gap: 10px;
+}
+
+.project-box.no-image {
+    justify-content: flex-start;
+}
+
+.project-box img {
+    max-width: 128px;
+    max-height: 128px;
+    width: auto;
+    height: auto;
+    border: 2px solid limegreen;
+}
+
+.project-text {
+    flex: 1;
+    color: white;
+    text-align: left;
+}
+
+.project-text p {
+    margin: 0;
+    color: white;
+    word-break: break-word;
+}
+
+#contact {
+    margin-top: 20px;
+    color: white;
+    background-color: black;
+    padding: 20px;
+    border: 2px solid limegreen;
+}
+
+.typed-output {
+    font-size: 16px;
+    line-height: 1.5;
+    color: white;
+}
+
+#contact-info span {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+#contact-info a {
+    color: limegreen;
+    text-decoration: none;
+}
+
+#contact-info a:hover {
+    text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #0c0c0c; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: limegreen; 
 }

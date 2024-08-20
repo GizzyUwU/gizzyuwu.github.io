@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const li = document.createElement("li");
     li.id = "terminal-li";
     if (withPrompt) {
-      li.innerHTML = `┌──(gizzy <i class="fa-brands fa-debian"></i> NG-Server)-[<span style="color: white">${replaceUnderlinedWithLinks(
+      li.innerHTML = `┌──(gizzy <i class="fab fa-linux"></i> NG-Server)-[<span style="color: white">${replaceUnderlinedWithLinks(
         promptText
       )}</span>]<br>└─$ `;
     } else {
@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
   ul.addEventListener("click", function (event) {
     if (event.target.classList.contains("terminal-link")) {
       event.preventDefault();
-      console.log("Navigating to:", event.target.id);
     }
   });
 
@@ -200,7 +199,6 @@ document.addEventListener("DOMContentLoaded", function () {
         typeCommands(index + 1);
       });
     } else {
-      highlightLinkByHash();
       setTimeout(() => {
         if (!document.getElementById("terminal").style.display === "none")
           return;
@@ -208,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         document.getElementById("terminal").style.display = "none";
         document.getElementById("terminal-site").style.display = "block";
+        highlightLinkByHash();
         new Typed("#terminal-site-title", {
           strings: ["Gizzy's Portfolio"],
           typeSpeed: 100,
@@ -268,52 +267,52 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (event.key === "Enter") {
       handleEnter();
     }
-    const links = document.querySelectorAll(".terminal-site-link");
-    links.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            console.log(link.getAttribute('data-target'))
-            const dataTarget = link.getAttribute('data-target');
-            handleButtonClick(dataTarget);
-        });
-    });
   });
 
+  const links = document.querySelectorAll(".terminal-site-link");
+  links.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const dataTarget = link.getAttribute('data-target');
+      handleButtonClick(dataTarget);
+    });
+  });
+  
   function handleButtonClick(dataTarget) {
     const targetElement = document.getElementById(dataTarget);
     if (!targetElement) return;
     if (lastTarget) {
-        document.getElementById(lastTarget).style.display = "none";
-        const lastLink = document.querySelector(`.terminal-site-link[data-target="${lastTarget}"]`);
-        if (lastLink) {
-            lastLink.classList.remove('terminal-site-link-highlight');
-        }
+      document.getElementById(lastTarget).style.display = "none";
+      const lastLink = document.querySelector(`.terminal-site-link[data-target="${lastTarget}"]`);
+      if (lastLink) {
+        lastLink.classList.remove('terminal-site-link-highlight');
+      }
     }
     targetElement.style.display = "block";
     lastTarget = dataTarget;
     const currentLink = document.querySelector(`.terminal-site-link[data-target="${dataTarget}"]`);
     if (currentLink) {
-        currentLink.classList.add('terminal-site-link-highlight');
+      currentLink.classList.add('terminal-site-link-highlight');
     }
     window.history.pushState(null, null, `#${dataTarget}`);
-}
+  }
 
-function moveHighlight(direction) {
+  function moveHighlight(direction) {
     const currentLink = document.querySelector('.terminal-site-link.terminal-site-link-highlight');
     if (!currentLink) return;
     let nextIndex;
     const links = document.querySelectorAll('.terminal-site-link');
     const linksArray = Array.from(links);
     if (direction === 'next') {
-        nextIndex = linksArray.findIndex(link => link === currentLink) + 1;
-        if (nextIndex >= linksArray.length) {
-            nextIndex = 0;
-        }
+      nextIndex = linksArray.findIndex(link => link === currentLink) + 1;
+      if (nextIndex >= linksArray.length) {
+        nextIndex = 0;
+      }
     } else if (direction === 'prev') {
-        nextIndex = linksArray.findIndex(link => link === currentLink) - 1;
-        if (nextIndex < 0) {
-            nextIndex = linksArray.length - 1;
-        }
+      nextIndex = linksArray.findIndex(link => link === currentLink) - 1;
+      if (nextIndex < 0) {
+        nextIndex = linksArray.length - 1;
+      }
     }
 
     const nextLink = linksArray[nextIndex];
@@ -321,21 +320,117 @@ function moveHighlight(direction) {
     currentLink.classList.remove('terminal-site-link-highlight');
     nextLink.classList.add('terminal-site-link-highlight');
     if (lastTarget) {
-        document.getElementById(lastTarget).style.display = "none";
+      document.getElementById(lastTarget).style.display = "none";
     }
     document.getElementById(dataTarget).style.display = "block";
     lastTarget = dataTarget;
     window.history.pushState(null, null, `#${dataTarget}`);
-}
+  }
   function handleEnter() {
     const highlightedElement = document.querySelector('.terminal-site-link-highlight');
     if (!highlightedElement) return;
     const dataTarget = highlightedElement.getAttribute('data-target');
     if (lastTarget) {
-        document.getElementById(lastTarget).style.display = "none";
+      document.getElementById(lastTarget).style.display = "none";
     }
     document.getElementById(dataTarget).style.display = "block";
     lastTarget = dataTarget;
     window.history.pushState(null, null, `#${dataTarget}`);
-}
+  }
 });
+
+async function fetchProjects() {
+  try {
+    const response = await fetch('https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Projects');
+    const issues = await response.json();
+    let projectsList = document.getElementById('projectsList');
+    if (issues.length > 0) {
+      projectsList.innerHTML = '';
+      issues.forEach(issue => {
+        const issueElement = document.createElement('li');
+        issueElement.classList.add('project-item');
+
+        const cleanedBody = issue.body.replace(/!\[.*?\]\(.*?\)/g, '');
+        const imageMatch = issue.body.match(/!\[.*?\]\((.*?)\)/);
+        const imageUrl = imageMatch ? imageMatch[1] : '';
+
+        const urlPattern = /URL="([^"]+)"/;
+        const urlMatch = urlPattern.exec(cleanedBody);
+        const url = urlMatch ? urlMatch[1] : null;
+        let bodyContent = cleanedBody.replace(urlPattern, '').trim();
+
+        let combinedContent = `${issue.title} - ${bodyContent}`;
+
+        let finalBodyContent = '';
+        if (url) {
+          finalBodyContent = `<a href="${url}">${combinedContent}</a>`;
+        } else {
+          finalBodyContent = combinedContent || 'No relevant content found.';
+        }
+
+        if (imageUrl) {
+          issueElement.innerHTML = `
+            <div class="project-box">
+              <img src="${imageUrl}" alt="${issue.title}" />
+              <div class="project-text">
+                <p>${finalBodyContent}</p>
+              </div>
+            </div>
+          `;
+        } else {
+          issueElement.innerHTML = `
+            <div class="project-box no-image">
+              <div class="project-text">
+                <p>${finalBodyContent}</p>
+              </div>
+            </div>
+          `;
+        }
+
+        projectsList.appendChild(issueElement);
+      });
+    } else {
+      projectsList.innerHTML = '<li class="project-item"><div class="project-box">No issues found with the label "Projects".</div></li>';
+    }
+  } catch (error) {
+    console.error('Error fetching issues:', error);
+    document.getElementById('projectsList').innerHTML = '<li class="project-item"><div class="project-box">Error fetching issues.</div></li>';
+  }
+}
+
+async function fetchContacts() {
+  try {
+    const response = await fetch('https://api.github.com/repos/GizzyUwU/gizzyuwu.github.io/issues?labels=Contact');
+    const issues = await response.json();
+    if (issues.length > 0) {
+      let contactElement = document.getElementById('contact-info');
+      contactElement.innerHTML = '';
+      issues.forEach(issue => {
+        const cleanedBody = issue.body.replace(/!\[.*?\]\(.*?\)/g, '');
+        const urlPattern = /URL="([^"]+)"/;
+        const urlMatch = urlPattern.exec(cleanedBody);
+        const url = urlMatch ? urlMatch[1] : null;
+        let bodyContent = cleanedBody.replace(urlPattern, '').trim();
+
+        let contactContent = '';
+        if (url) {
+          contactContent = `<a href="${url}">${issue.title}</a> - ${bodyContent}`;
+        } else {
+          contactContent = `${issue.title} - ${bodyContent}`;
+        }
+
+        contactElement.innerHTML += `<span>${contactContent}</span><br>`;
+      });
+    } else {
+      contactElement.innerHTML = 'No contact information found.';
+    }
+  } catch (error) {
+    console.error('Error fetching contact info:', error);
+    document.getElementById('contact-info').innerHTML = 'Error loading contact information.';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  fetchProjects();
+  fetchContacts();
+})
