@@ -43,6 +43,8 @@ function highlightLinkByHash() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  let a = document.body.classList.add("hide-scrollbar");
+  console.log('aw', a)
   const ul = document.getElementById("terminal-output");
   let typedInstance = null;
 
@@ -200,10 +202,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     } else {
       setTimeout(() => {
-        if (!document.getElementById("terminal").style.display === "none")
-          return;
-        if (document.getElementById("terminal-site").style.display === "block")
-          return;
+        if (!document.getElementById("terminal").style.display === "none") return;
+        if (document.getElementById("terminal-site").style.display === "block") return;
+        document.body.classList.remove("hide-scrollbar");
         document.getElementById("terminal").style.display = "none";
         document.getElementById("terminal-site").style.display = "block";
         highlightLinkByHash();
@@ -234,8 +235,8 @@ document.addEventListener("DOMContentLoaded", function () {
         typedInstance.stop();
       }
       if (!document.getElementById("terminal").style.display === "none") return;
-      if (document.getElementById("terminal-site").style.display === "block")
-        return;
+      if (document.getElementById("terminal-site").style.display === "block") return;
+      document.body.classList.remove("hide-scrollbar");
       document.getElementById("terminal").style.display = "none";
       document.getElementById("terminal-site").style.display = "block";
       highlightLinkByHash();
@@ -487,7 +488,27 @@ async function fetchContacts() {
   }
 }
 
+function addAnalytics() {
+  if (window.location.hostname === "gizzy.is-a.dev") {
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    script.setAttribute("data-cf-beacon", '{"token": "bf64301f0f8e4b50844658fbf6de1127"}');
+    document.head.appendChild(script);
+} else if(window.location.hostname === "gizzyuwu.pages.gay") {
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    script.setAttribute("data-cf-beacon", '{"token": "fa2a1505684f46bc8af2291daf1b0fe7"}');
+    document.head.appendChild(script);
+} else {
+  console.info('[Analytics] Disabled due to site being on neither domain set')
+  console.info(window.location.hostname)
+}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  addAnalytics();
   fetchProjects();
   fetchContacts();
 })
