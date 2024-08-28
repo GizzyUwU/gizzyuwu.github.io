@@ -43,8 +43,7 @@ function highlightLinkByHash() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  let a = document.body.classList.add("hide-scrollbar");
-  console.log('aw', a)
+  document.body.classList.add("hide-scrollbar");
   const ul = document.getElementById("terminal-output");
   let typedInstance = null;
 
@@ -503,7 +502,6 @@ function addAnalytics() {
     document.head.appendChild(script);
 } else {
   console.info('[Analytics] Disabled due to site being on neither domain set')
-  console.info(window.location.hostname)
 }
 }
 
