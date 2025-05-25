@@ -1,128 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script src="/public/js/loading.js"></script>
-  <head onload="activateLoad()">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gizzy</title>
-    <meta property="og:title" content="Gizzy's Portfolio">
-    <meta property="og:description" content="Check out Gizzy's Portfolio!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gizzy.is-a.dev">
-    <meta name="description" content="Check out Gizzy's Portfolio!">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Gizzy's Portfolio">
-    <meta name="twitter:description" content="Check out Gizzy's Portfolio!">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Gizzy">
-    <link rel="canonical" href="https://gizzy.is-a.dev">
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/public/favicon/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" href="/public/css/index.css" />
-    <script src="/public/js/typed.js"></script>
-    <script src="/public/js/index.js"></script>
-    <script src="/public/js/font-awesome.js"></script>
-  </head>
-  <div class="loading" id="loading">
-    <div class="loading-box"></div>
+<script src="/public/js/loading.js"></script>
+
+<head onload="activateLoad()">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gizzy</title>
+  <meta property="og:title" content="Gizzy's Portfolio">
+  <meta property="og:description" content="Check out Gizzy's Portfolio!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gizzy.is-a.dev">
+  <meta name="description" content="Check out Gizzy's Portfolio!">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gizzy's Portfolio">
+  <meta name="twitter:description" content="Check out Gizzy's Portfolio!">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gizzy">
+  <link rel="canonical" href="https://gizzy.is-a.dev">
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="mask-icon" href="/public/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="/public/css/index.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXNJC5PSC8"></script>
+  <script src="/public/js/typed.js"></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/font-awesome.js"></script>
+</head>
+<div class="loading" id="loading">
+  <div class="loading-box"></div>
+</div>
+
+<body>
+  <!-- Meow. Why you looking at my code. MEOW!-->
+  <div id="terminal" class="terminal-container active">
+    <ul id="terminal-output"></ul>
   </div>
-  <body>
-    <!-- Meow. Why you looking at my code. MEOW!-->
-    <div id="terminal" class="terminal-container">
-        <ul id="terminal-output"></ul>
+  <div id="terminal-site" class="terminal-site-container">
+    <div class="terminal-site-title">
+      <h1 id="terminal-site-title"></h1>
     </div>
-    <div id="terminal-site" class="terminal-site-container">
-      <div class="terminal-site-title">
-        <h1 id="terminal-site-title"></h1>
+    <div id="terminal-site-items" style="text-align: center;" class="terminal-site-items">
+      <a href="#home" class="terminal-site-link" data-target="home">Home</a>
+      <a href="#about" class="terminal-site-link" data-target="about">About</a>
+      <a href="#projects" class="terminal-site-link" data-target="projects">Projects</a>
+      <a href="#contact" class="terminal-site-link" data-target="contact">Contact</a>
+      <div id="home" class="content-section">
+        <p class="typed-output">Hey there! Welcome to my portfolio.</p>
+        <p class="typed-output">I'm mostly known as Gizzy online but over the years I've went through a couple
+          usernames. I'm just a weird person on the internet but you'd probably know that by reading this. Check out the
+          rest of the site through the navigation bar or for mobile users slide to the left or right. Enjoy!</p>
       </div>
-      <div id="terminal-site-items" style="text-align: center;" class="terminal-site-items">
-          <a href="#home" class="terminal-site-link" data-target="home">Home</a>
-          <a href="#about" class="terminal-site-link" data-target="about">About</a>
-          <a href="#projects" class="terminal-site-link" data-target="projects">Projects</a>
-          <a href="#contact" class="terminal-site-link" data-target="contact">Contact</a>
-          <div id="home" class="content-section">
-              <p class="typed-output">Hey there! Welcome to my amazing portfolio.</p>
-              <p class="typed-output">I'm mostly known as Gizzy online but over the years I've went through a couple usernames. I'm just a chaotic person who likes to code >:3<br>At the moment you are seeing the new theme for this site! I inspired it off a terminal theme and I personally think it looks nice.<br>
-                I hope you enjoy the site and maybe check out my about page, projects and see how to contact me in the contact section.</p>
+      <div id="about" class="content-section">
+        <p class="about-content">
+          Hey again! So you want to know more about me.<br>
+          As you know, I go by the alias <strong>Gizzy</strong> on the internet and that's what you only will get to
+          call me — any other name is too personal for you to know, sorry.<br>
+          Though I do like to play games like:
+        <ul>
+          <li>Portal</li>
+          <li>Portal 2</li>
+          <li>Portal Revolution</li>
+          <li>Deep Rock Galactic</li>
+          <li>Indigo Park</li>
+          <li>Call of Duty</li>
+          <li>Grocery Store Simulator</li>
+          <li>Stormworks</li>
+        </ul>
+        The list just keeps going.<br><br>
+
+        You may already know I'm a nerd, so I do enjoy coding a lot in my free time, with most projects being open
+        source — because open source software is great.<br>
+
+        I'm also a Linux enthusiast with most of my devices running Arch Linux. <br><em>Yes. I use Arch BTW.</em><br>
+
+        Something you might not know but might as well share is that I have a disability called
+        <a style="color: lime;" href="https://en.wikipedia.org/wiki/Developmental_coordination_disorder">
+          <span class="allow-selection">Dyspraxia</span>
+        </a>
+        </p>
+      </div>
+      <div id="projects" class="content-section">
+        <p class="typed-output">These are some of repositories (forked/non-forked):</p>
+        <ul class="projects-list" id="projectsList">
+          <li class="project-item">
+            <div class="project-box">
+              <div class="project-text">
+                <p>Loading project info.</p>
+              </div>
             </div>
-          <div id="about" class="content-section">
-              <p class="typed-output">Hey! Cool you decided to check out my about section. I see you want to know more about me well you shall be granted your request.<br>
-                As you know I go by Gizzy online and my real life name is REDACTED sorry but thats too personal for you to know anyway I like to code as you may know but I also like to game.<br>
-                I tend to play games like Minecraft, Call of Duty, Grand Theft Auto and Protoshock (I'm on its server backend developer team for the game :D).<br>
-                As you wouldn't get my real name I will give you something else personal about me I have a disabilty called <a style="color: lime;" href="https://en.wikipedia.org/wiki/Developmental_coordination_disorder"><span class="allow-selection">Dyspraxia</span></a>.<br>People online tend to find my personality annoying so if you find me annoying to just like ignore me I don't care that you find me annoying so.</p>
-          </div>
-          <div id="projects" class="content-section">
-            <p class="typed-output">These are some of the projects I've been working on:</p>
-            <ul class="projects-list" id="projectsList">
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-              <li class="project-item">
-                <div class="project-box">
-                  <img src="https://github.com/user-attachments/assets/53a51625-6e88-445d-86ed-4173d187db2f" alt="Protoshock">
-                  <div class="project-text">
-                    <p><a href="https://github.com/protoshock/Server-Files">Protoshock - Game server for the Steam game Protoshock.</a></p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div id="contact" class="content-section">
-            <p class="typed-output">
-              <span id="contact-info">Loading contact info...</span>
-            </p>
-          </div>          
+          </li>
+        </ul>
+      </div>
+      <div id="contact" class="content-section">
+        <p class="typed-output">
+          <span id="contact-info">Loading contact info...</span>
+        </p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
