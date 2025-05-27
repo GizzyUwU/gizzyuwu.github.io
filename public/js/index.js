@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
     targetElement.classList.add("active");
     if (dataTarget === "projects") {
       fetchProjects();
-    } else if (dataTarget === "contacts") {
+    } else if (dataTarget === "contact") {
       fetchContacts();
     }
     lastTarget = dataTarget;
@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(dataTarget);
     if (dataTarget === "projects") {
       fetchProjects();
-    } else if (dataTarget === "contacts") {
+    } else if (dataTarget === "contact") {
       fetchContacts();
     }
   }
@@ -483,6 +483,7 @@ async function fetchContacts() {
   const githubUrl = "https://api.github.com/users/GizzyUwU";
   let data;
   const cached = localStorage.getItem("contact");
+
   if (cached) {
     try {
       data = JSON.parse(cached);
@@ -499,18 +500,19 @@ async function fetchContacts() {
       if (!response.ok) throw new Error("GitHub API failed");
       data = await response.json();
       localStorage.setItem("contact", JSON.stringify(data));
+      console.log('pluh')
     } catch (error) {
       console.error("Fetch failed.");
       document.getElementById("contact-info").innerHTML =
         "Error loading contact information.";
+      return;  // <---- Stop here on fetch failure!
     }
   }
 
+  // At this point data is defined for sure
   const contactInfoElement = document.getElementById("contact-info");
   contactInfoElement.innerHTML = `
-    <img src="${
-      data.avatar_url
-    }" alt="Avatar" style="width:48px;border-radius:50%;">
+    <img src="${data.avatar_url}" alt="Avatar" style="width:48px;border-radius:50%;">
     <p><strong>${data.name || data.login}</strong></p>
     <p><a href="${data.html_url}" target="_blank">${data.html_url}</a></p>
     <p>${data.bio || ""}</p>
@@ -529,6 +531,7 @@ async function fetchContacts() {
     <p>Public Repos: ${data.public_repos}</p>
   `;
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
   window.dataLayer = window.dataLayer || [];
